@@ -1,0 +1,19 @@
+uploadPath: E:/nblw/
+storageAttachmentPath: E:/nblw/storage/
+fileUrl: /file/
+server:
+  port: 7105
+  tomcat:
+      basedir: D:/tempUpload
+spring:
+  application:
+    name: wm-schedule
+  datasource:
+    url: jdbc:mysql://192.168.10.201:3306/wm-schedule?useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: yg987654321
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

@@ -1,0 +1,26 @@
+tbExcelModelPath: E:\ExcelModel\PCTrackBeam.xlsx
+tbExcelModelPath2: E:\ExcelModel\PCTrackBeam2.xls
+PlanExcelModelPath: E:\ExcelModel\PCTrackBeamPlan2.xlsx
+uploadPath: E:/upload/
+accessPath: /file/
+server:
+  port: 7101
+  tomcat:
+        basedir: E:/upload/temp
+spring:
+  application:
+    name: wm-beam-field
+  datasource:
+    url: jdbc:mysql://192.168.10.201:3306/wm-beam-field?useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: yg987654321
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true

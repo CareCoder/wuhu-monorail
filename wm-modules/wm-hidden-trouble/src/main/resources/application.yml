@@ -1,0 +1,16 @@
+uploadImagePath: D:/wuhu-monorail/hidden-trouble/image
+imageUrlPrefix: /image/
+server:
+  port: 7103
+spring:
+  application:
+    name: wm-hidden-trouble
+  datasource:
+    url: jdbc:mysql://192.168.10.201:3306/wm-hidden-trouble?useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: yg987654321
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

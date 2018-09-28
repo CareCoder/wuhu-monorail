@@ -1,0 +1,17 @@
+uploadImagePath: D:/wuhu-monorail/risk/image/
+imageUrlPrefix: /image/
+weatherUrl: http://api.map.baidu.com/telematics/v3/weather?location=芜湖&output=json&ak=xI4aYO52g9TvKXLFdSY846ga
+server:
+  port: 7102
+spring:
+  application:
+    name: wm-risk
+  datasource:
+    url: jdbc:mysql://192.168.10.201:3306/wm-risk?useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: yg987654321
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

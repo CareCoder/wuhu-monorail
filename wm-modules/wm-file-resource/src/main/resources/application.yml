@@ -1,0 +1,16 @@
+filePath: D:/wuhu-file/file/
+fileUrlPrefix: /file/
+server:
+  port: 7110
+spring:
+  application:
+    name: wm-file-resource
+  datasource:
+    url: jdbc:mysql://192.168.10.201:3306/wm-file-resource?useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: yg987654321
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

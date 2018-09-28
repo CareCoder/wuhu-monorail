@@ -1,0 +1,15 @@
+userPassword: 123456
+server:
+  port: 7104
+spring:
+  application:
+    name: wm-system
+  datasource:
+    url: jdbc:mysql://192.168.10.201:3306/wm-system?useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: yg987654321
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

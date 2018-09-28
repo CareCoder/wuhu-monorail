@@ -1,0 +1,16 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/shared
+  profiles:
+    active: native
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:123456@localhost:8081/eureka/

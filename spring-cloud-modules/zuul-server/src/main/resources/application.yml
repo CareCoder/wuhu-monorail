@@ -1,0 +1,81 @@
+server:
+  port: 8888
+  tomcat:
+        basedir: E:/upload/temp
+zuul:
+  servlet-path: /
+  routes:
+    authorized:
+      path: /authorized/**
+      serviceId: wm-authorized
+    beam-field:
+      path: /beam-field/**
+      serviceId: wm-beam-field
+    hidden-trouble:
+      path: /hidden-trouble/**
+      serviceId: wm-hidden-trouble
+    risk:
+      path: /risk/**
+      serviceId: wm-risk
+    system:
+      path: /system/**
+      serviceId: wm-system
+    prophase:
+      path: /prophase/**
+      serviceId: wm-prophase-eng
+    schedule:
+      path: /schedule/**
+      serviceId: wm-schedule
+    file-resource:
+      path: /file-resource/**
+      serviceId: wm-file-resource
+    quality:
+      path: /quality/**
+      serviceId: wm-quality
+    virtual-construction:
+      path: /virtual-construction/**
+      serviceId: wm-virtual-construction
+    wm-document:
+      path: /document/**
+      serviceId: wm-document
+  add-host-header: true
+  #传递header  服务传递到客户端
+  sensitiveHeaders:
+spring:
+  application:
+    name: zuul-server
+#  cloud:
+#    config:
+#      discovery:
+#        service-id: config-server
+#        enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:123456@localhost:8081/eureka/
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+#feign:
+#  hystrix:
+#    enable: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+#jwt 配置
+jwt:
+  header: Authorization
+  secret: MyJwtSecret
+  expiration: 604800000
+  tokenHead: "Bearer "

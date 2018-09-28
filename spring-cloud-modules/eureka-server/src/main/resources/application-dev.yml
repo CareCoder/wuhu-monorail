@@ -1,0 +1,22 @@
+server:
+  port: 8081
+#禁止本身被当成普通服务被注册发现
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka/
+  instance:
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+    hostname: localhost
+spring:
+  application:
+    name: eureka-server
+security:
+  basic:
+    enabled: true
+  user:
+    name: user
+    password: 123456

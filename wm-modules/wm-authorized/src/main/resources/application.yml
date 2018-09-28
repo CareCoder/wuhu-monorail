@@ -1,0 +1,19 @@
+server:
+  port: 7999
+spring:
+  application:
+    name: wm-authorized
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:123456@localhost:8081/eureka/
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+jwt:
+  header: Authorization
+  secret: MyJwtSecret
+  expiration: 604800000
+  tokenHead: "Bearer "

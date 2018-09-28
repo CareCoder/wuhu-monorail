@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>wuhu-monorail</artifactId>
+        <groupId>net.cdsunrise.wm</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>wm-modules</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>wm-beam-field</module>
+        <module>wm-risk</module>
+        <module>wm-hidden-trouble</module>
+        <module>wm-system</module>
+        <module>wm-schedule</module>
+        <module>wm-prophase-engineering</module>
+        <module>wm-authorized</module>
+        <module>wm-quality</module>
+        <module>wm-file-resource</module>
+        <module>wm-virtual-construction</module>
+        <module>wm-document</module>
+    </modules>
+
+
+</project>
