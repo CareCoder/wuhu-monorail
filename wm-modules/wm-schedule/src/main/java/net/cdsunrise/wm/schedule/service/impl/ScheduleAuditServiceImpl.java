@@ -1,6 +1,8 @@
 package net.cdsunrise.wm.schedule.service.impl;
 
+import net.cdsunrise.wm.base.dao.CommonDAO;
 import net.cdsunrise.wm.base.exception.ServiceErrorException;
+import net.cdsunrise.wm.base.hibernate.QueryHelper;
 import net.cdsunrise.wm.base.web.User;
 import net.cdsunrise.wm.base.web.UserUtils;
 import net.cdsunrise.wm.schedule.entity.ScheduleAudit;
@@ -14,6 +16,7 @@ import net.cdsunrise.wm.schedule.service.ScheduleAuditService;
 import net.cdsunrise.wm.schedule.service.ScheduleReportService;
 import net.cdsunrise.wm.schedule.vo.*;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,6 +30,8 @@ import java.util.Map;
  */
 @Service
 public class ScheduleAuditServiceImpl implements ScheduleAuditService {
+    @Autowired
+    private CommonDAO commonDAO;
 
     private ScheduleAuditRepository auditRepository;
     private SchedulePlanRepository planRepository;
@@ -270,19 +275,28 @@ public class ScheduleAuditServiceImpl implements ScheduleAuditService {
         }
         List<SchedulePlan> planList;
 
-        if(!deptIds.isEmpty()){
-            if(StringUtils.isBlank(queryVo.getCreateDate())){
-                planList = planRepository.findForConfirm(queryVo.getCategory(),queryVo.getStatus(),deptIds);
-            }else{
-                planList = planRepository.findForConfirm(queryVo.getCategory(),queryVo.getStatus(),deptIds,queryVo.getCreateDate());
-            }
-        }else{
-            if(StringUtils.isBlank(queryVo.getCreateDate())){
-                planList = planRepository.findForConfirm(queryVo.getCategory(),queryVo.getStatus());
-            }else{
-                planList = planRepository.findForConfirm(queryVo.getCategory(),queryVo.getStatus(),queryVo.getCreateDate());
-            }
-        }
+//        if(!deptIds.isEmpty()){
+//            if(StringUtils.isBlank(queryVo.getCreateDate())){
+//                planList = planRepository.findForConfirm(queryVo.getCategory(),queryVo.getStatus(),deptIds);
+//            }else{
+//                planList = planRepository.findForConfirm(queryVo.getCategory(),queryVo.getStatus(),deptIds,queryVo.getCreateDate());
+//            }
+//        }else{
+//            if(StringUtils.isBlank(queryVo.getCreateDate())){
+//                planList = planRepository.findForConfirm(queryVo.getCategory(),queryVo.getStatus());
+//            }else{
+//                planList = planRepository.findForConfirm(queryVo.getCategory(),queryVo.getStatus(),queryVo.getCreateDate());
+//            }
+//        }
+
+        QueryHelper queryHelper = new QueryHelper(SchedulePlan.class, "schedule_plan");
+        queryHelper.addCondition(queryVo.getCategory() != null, "category=?" , queryVo.getCategory())
+        .addCondition(queryVo.getStatus() != null, "confirm_status=?" , queryVo.getStatus())
+        .addCondition(!deptIds.isEmpty(), "dept_id in (?)", deptIds.stream().map(String::valueOf).reduce("", (f, s) -> f + s + ","))
+        .addCondition(queryVo.getCreateDate() != null, "create_time=?" , queryVo.getCreateDate())
+        .useNativeSql(false);
+
+        planList = commonDAO.findList(queryHelper);
 
         if(planList!=null&&!planList.isEmpty()){
             List<DepartmentVo> departmentVoList = systemFeign.getAllDepartment();
