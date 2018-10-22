@@ -13,4 +13,10 @@ public interface FileResourceService {
     FileResourceBo get(Long id);
 
     List<FileResourceBo> findAll();
+
+    void upload(FileResource fileResource);
+
+    FileResourceBo getByUuid(String uuid);
+
+    void deleteByUuid(String uuid);
 }
