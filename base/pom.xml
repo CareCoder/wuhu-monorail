@@ -87,5 +87,17 @@
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.openfeign.form/feign-form -->
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.openfeign.form/feign-form-spring -->
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form-spring</artifactId>
+            <version>2.1.0</version>
+        </dependency>
     </dependencies>
 </project>
