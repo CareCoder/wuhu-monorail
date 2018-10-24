@@ -15,10 +15,13 @@ import org.springframework.http.converter.FormHttpMessageConverter;
 
 @Configuration
 public class FromUrlEncodedClientConfiguration {
+    @Autowired
+    private ObjectFactory<HttpMessageConverters> messageConverters;
+
     @Bean
     @Primary
     @Scope("prototype")
     public Encoder multipartFormEncoder() {
-        return new SpringFormEncoder();
+        return new SpringEncoder(messageConverters);
     }
 }

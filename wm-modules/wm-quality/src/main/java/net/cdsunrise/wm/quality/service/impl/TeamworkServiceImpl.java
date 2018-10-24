@@ -9,10 +9,12 @@ import net.cdsunrise.wm.quality.service.TeamworkService;
 import net.cdsunrise.wm.quality.vo.FileResourceBo;
 import net.cdsunrise.wm.quality.vo.TeamworkVo;
 import org.springframework.beans.BeanUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -57,8 +59,15 @@ public class TeamworkServiceImpl implements TeamworkService {
     }
 
     @Override
-    public void zip(List<Long> ids) {
-        //TODO yq 2018-10-23 09:58:25
+    public ResponseEntity<byte[]> zip(Long[] ids) {
+        List<String> uuidList = new ArrayList<>();
+        for (Long id : ids) {
+            Teamwork one = teamworkRepository.findOne(id);
+            uuidList.add(one.getFileUuid());
+        }
+        String[] uuids = new String[uuidList.size()];
+        uuidList.toArray(uuids);
+        return fileResourceFeign.downloadByUuid(uuids);
     }
 
     @Override

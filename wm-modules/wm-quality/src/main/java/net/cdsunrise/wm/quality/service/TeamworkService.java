@@ -2,6 +2,7 @@ package net.cdsunrise.wm.quality.service;
 
 import net.cdsunrise.wm.quality.entity.Teamwork;
 import net.cdsunrise.wm.quality.vo.TeamworkVo;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public interface TeamworkService {
      * 提供压缩文件
      * @param ids id
      */
-    void zip(List<Long> ids);
+    ResponseEntity<byte[]> zip(Long[] ids);
 
     /**
      * 删除

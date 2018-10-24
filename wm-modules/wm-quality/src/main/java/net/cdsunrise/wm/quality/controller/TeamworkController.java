@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import net.cdsunrise.wm.quality.entity.Teamwork;
 import net.cdsunrise.wm.quality.service.TeamworkService;
 import net.cdsunrise.wm.quality.vo.TeamworkVo;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,8 +46,7 @@ public class TeamworkController {
     }
 
     @GetMapping("/zip")
-    public void zip(List<Long> ids) {
-        //TODO yq 2018-10-23 10:08:35
-        teamworkService.zip(ids);
+    public ResponseEntity<byte[]> zip(Long[] ids) {
+        return teamworkService.zip(ids);
     }
 }
