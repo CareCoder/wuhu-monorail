@@ -1,7 +1,9 @@
 package net.cdsunrise.wm.quality.service.impl;
 
+import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import net.cdsunrise.wm.base.dao.CommonDAO;
 import net.cdsunrise.wm.base.hibernate.QueryHelper;
+import net.cdsunrise.wm.base.util.BeanUtilIgnore;
 import net.cdsunrise.wm.quality.entity.Teamwork;
 import net.cdsunrise.wm.quality.feign.FileResourceFeign;
 import net.cdsunrise.wm.quality.repostory.TeamworkRepository;
@@ -49,6 +51,7 @@ public class TeamworkServiceImpl implements TeamworkService {
     public List<TeamworkVo> query(Teamwork teamwork) {
         QueryHelper queryHelper = new QueryHelper(Teamwork.class, "t");
         queryHelper
+                .addCondition(!Objects.isNull(teamwork.getId()), "t.id = ?", teamwork.getId())
                 .addCondition(!Objects.isNull(teamwork.getFileUuid()), "t.fileUuid = ?", teamwork.getFileUuid())
                 .addCondition(!Objects.isNull(teamwork.getName()), "t.name = ?", teamwork.getName())
                 .addCondition(!Objects.isNull(teamwork.getStatus()), "t.status = ?", teamwork.getStatus())
@@ -81,8 +84,10 @@ public class TeamworkServiceImpl implements TeamworkService {
 
     @Override
     public void update(Teamwork teamwork) {
-        teamwork.setModifyTime(new Date());
-        teamworkRepository.save(teamwork);
+        Teamwork one = teamworkRepository.findOne(teamwork.getId());
+        one.setModifyTime(new Date());
+        BeanUtilIgnore.copyPropertiesIgnoreNull(teamwork, one);
+        teamworkRepository.save(one);
     }
 
     private TeamworkVo convert(Teamwork teamwork) {

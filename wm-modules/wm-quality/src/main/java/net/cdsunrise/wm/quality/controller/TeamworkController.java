@@ -49,4 +49,9 @@ public class TeamworkController {
     public ResponseEntity<byte[]> zip(Long[] ids) {
         return teamworkService.zip(ids);
     }
+
+    @PostMapping("/update")
+    public void update(Teamwork teamwork) {
+        teamworkService.update(teamwork);
+    }
 }

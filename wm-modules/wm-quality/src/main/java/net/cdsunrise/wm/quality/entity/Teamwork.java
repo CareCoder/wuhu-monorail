@@ -2,6 +2,7 @@ package net.cdsunrise.wm.quality.entity;
 
 import lombok.Data;
 import net.cdsunrise.wm.base.hibernate.BaseEntity;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "wm_teamword")
+@DynamicUpdate
 public class Teamwork extends BaseEntity {
     /**
      * 名字
