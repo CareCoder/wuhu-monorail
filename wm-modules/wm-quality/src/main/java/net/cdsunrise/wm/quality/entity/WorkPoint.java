@@ -13,17 +13,13 @@ import javax.persistence.Table;
  */
 @Data
 @Entity
-@Table(name = "wm_car_work_point")
+@Table(name = "wm_work_point")
 @DynamicUpdate
-public class CarAndWorkPoint extends BaseEntity {
+public class WorkPoint extends BaseEntity {
     /**
      * 车间站点id
      */
     private Long carPointId;
-    /**
-     * 工作站点id
-     */
-    private Long workPointId;
     /**
      * 工作站的名字
      */
