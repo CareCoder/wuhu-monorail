@@ -50,6 +50,11 @@ public class TeamworkController {
         return teamworkService.zip(ids);
     }
 
+    @GetMapping("/zipall")
+    public ResponseEntity<byte[]> zipall(Long workPointId) {
+        return teamworkService.zip(workPointId);
+    }
+
     @PostMapping("/update")
     public void update(Teamwork teamwork) {
         teamworkService.update(teamwork);

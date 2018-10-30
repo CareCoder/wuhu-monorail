@@ -38,4 +38,11 @@ public interface TeamworkService {
      * 更新
      */
     void update(Teamwork teamwork);
+
+    /**
+     * 根据workPointId 查询出所有 teamwork 然后下载
+     * @param workPointId 工作站点
+     * @return 压缩文件
+     */
+    ResponseEntity<byte[]> zip(Long workPointId);
 }

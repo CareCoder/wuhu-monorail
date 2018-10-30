@@ -34,4 +34,14 @@ public class WorkPointController {
     public void add(WorkPoint workPoint) {
         workPointService.add(workPoint);
     }
+
+    @GetMapping("/delete/{id}")
+    public void delete(@PathVariable("id") Long id){
+        workPointService.delete(id);
+    }
+
+    @PostMapping("/update")
+    public void update(WorkPoint workPoint) {
+        workPointService.update(workPoint);
+    }
 }

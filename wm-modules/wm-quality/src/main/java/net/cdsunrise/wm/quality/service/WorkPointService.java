@@ -10,4 +10,8 @@ public interface WorkPointService {
     void add(WorkPoint workPoint);
 
     List<WorkPoint> query(Long carPointId);
+
+    void delete(Long id);
+
+    void update(WorkPoint workPoint);
 }

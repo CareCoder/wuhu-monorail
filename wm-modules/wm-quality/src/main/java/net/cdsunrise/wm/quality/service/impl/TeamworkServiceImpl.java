@@ -10,6 +10,7 @@ import net.cdsunrise.wm.quality.repostory.TeamworkRepository;
 import net.cdsunrise.wm.quality.service.TeamworkService;
 import net.cdsunrise.wm.quality.vo.FileResourceBo;
 import net.cdsunrise.wm.quality.vo.TeamworkVo;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -88,6 +89,15 @@ public class TeamworkServiceImpl implements TeamworkService {
         one.setModifyTime(new Date());
         BeanUtilIgnore.copyPropertiesIgnoreNull(teamwork, one);
         teamworkRepository.save(one);
+    }
+
+    @Override
+    public ResponseEntity<byte[]> zip(Long workPointId) {
+        Teamwork teamwork = new Teamwork();
+        teamwork.setWorkPointId(workPointId);
+        List<TeamworkVo> teamworkVoList = query(teamwork);
+        Long[] ids = teamworkVoList.stream().map(TeamworkVo::getId).toArray(Long[]::new);
+        return zip(ids);
     }
 
     private TeamworkVo convert(Teamwork teamwork) {
