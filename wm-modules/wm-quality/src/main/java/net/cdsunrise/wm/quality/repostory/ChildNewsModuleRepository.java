@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ChildNewsModuleRepository extends JpaRepository<ChildNewsModule, Long> {
+    List<ChildNewsModule> findByPid(Long pid);
 }

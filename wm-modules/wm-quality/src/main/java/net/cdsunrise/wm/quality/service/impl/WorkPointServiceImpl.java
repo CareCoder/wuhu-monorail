@@ -23,8 +23,8 @@ public class WorkPointServiceImpl implements WorkPointService {
     }
 
     @Override
-    public void add(WorkPoint workPoint) {
-        workPointRepository.save(workPoint);
+    public WorkPoint add(WorkPoint workPoint) {
+        return workPointRepository.saveAndFlush(workPoint);
     }
 
     @Override

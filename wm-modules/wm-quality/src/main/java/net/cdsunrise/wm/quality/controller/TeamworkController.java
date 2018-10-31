@@ -2,6 +2,7 @@ package net.cdsunrise.wm.quality.controller;
 
 import io.swagger.annotations.Api;
 import net.cdsunrise.wm.quality.entity.Teamwork;
+import net.cdsunrise.wm.quality.entity.WorkPoint;
 import net.cdsunrise.wm.quality.service.TeamworkService;
 import net.cdsunrise.wm.quality.vo.TeamworkVo;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,11 @@ public class TeamworkController {
     @PostMapping("/upload")
     public void upload(MultipartFile file, Teamwork teamwork) {
         teamworkService.upload(file, teamwork);
+    }
+
+    @PostMapping("/uploadfloder")
+    public void uploadFloder(MultipartFile[] file, WorkPoint workPoint) {
+        teamworkService.uploadFloder(file, workPoint);
     }
 
     @GetMapping("/zip")

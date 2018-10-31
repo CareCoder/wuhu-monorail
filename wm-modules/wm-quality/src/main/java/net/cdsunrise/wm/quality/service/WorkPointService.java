@@ -7,7 +7,7 @@ import java.util.List;
 public interface WorkPointService {
     List<WorkPoint> list();
 
-    void add(WorkPoint workPoint);
+    WorkPoint add(WorkPoint workPoint);
 
     List<WorkPoint> query(Long carPointId);
 

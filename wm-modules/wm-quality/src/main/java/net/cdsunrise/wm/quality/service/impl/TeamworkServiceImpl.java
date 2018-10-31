@@ -1,16 +1,16 @@
 package net.cdsunrise.wm.quality.service.impl;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import net.cdsunrise.wm.base.dao.CommonDAO;
 import net.cdsunrise.wm.base.hibernate.QueryHelper;
 import net.cdsunrise.wm.base.util.BeanUtilIgnore;
 import net.cdsunrise.wm.quality.entity.Teamwork;
+import net.cdsunrise.wm.quality.entity.WorkPoint;
 import net.cdsunrise.wm.quality.feign.FileResourceFeign;
 import net.cdsunrise.wm.quality.repostory.TeamworkRepository;
 import net.cdsunrise.wm.quality.service.TeamworkService;
+import net.cdsunrise.wm.quality.service.WorkPointService;
 import net.cdsunrise.wm.quality.vo.FileResourceBo;
 import net.cdsunrise.wm.quality.vo.TeamworkVo;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -29,6 +29,9 @@ public class TeamworkServiceImpl implements TeamworkService {
     private TeamworkRepository teamworkRepository;
 
     @Resource
+    private WorkPointService workPointService;
+
+    @Resource
     private FileResourceFeign fileResourceFeign;
 
     @Resource
@@ -45,7 +48,21 @@ public class TeamworkServiceImpl implements TeamworkService {
         teamwork.setFileUuid(uuid);
         teamwork.setCreateTime(new Date());
         teamwork.setModifyTime(new Date());
+        //如果没上传文件名字,则使用原始名字
+        if (teamwork.getName() == null) {
+            teamwork.setName(file.getOriginalFilename());
+        }
         teamworkRepository.save(teamwork);
+    }
+
+    @Override
+    public void uploadFloder(MultipartFile[] files, WorkPoint workPoint) {
+        workPoint = workPointService.add(workPoint);
+        for (MultipartFile file : files) {
+            Teamwork teamwork = new Teamwork();
+            teamwork.setWorkPointId(workPoint.getId());
+            upload(file, teamwork);
+        }
     }
 
     @Override

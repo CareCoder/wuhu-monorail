@@ -11,4 +11,6 @@ public interface ChildNewsModuleService {
     void add(ChildNewsModule childNewsModule);
 
     void update(ChildNewsModule childNewsModule);
+
+    List<ChildNewsModule> findByPid(Long pid);
 }

@@ -32,4 +32,9 @@ public class ChildNewsModuleController {
     public void update(ChildNewsModule childNewsModule) {
         childNewsModuleService.update(childNewsModule);
     }
+
+    @GetMapping("/find")
+    public List<ChildNewsModule> find(Long pid) {
+        return childNewsModuleService.findByPid(pid);
+    }
 }

@@ -38,4 +38,9 @@ public class ChildNewsModuleServiceImpl implements ChildNewsModuleService {
         one.setModifyTime(new Date());
         childNewsModuleRepository.saveAndFlush(one);
     }
+
+    @Override
+    public List<ChildNewsModule> findByPid(Long pid) {
+        return childNewsModuleRepository.findByPid(pid);
+    }
 }
