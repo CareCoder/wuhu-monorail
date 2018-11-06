@@ -11,6 +11,10 @@ public interface WorkPointService {
 
     List<WorkPoint> query(Long carPointId);
 
+    /**
+     * 删除文件夹及文件夹下面的所有文件
+     * @param id
+     */
     void delete(Long id);
 
     void update(WorkPoint workPoint);
