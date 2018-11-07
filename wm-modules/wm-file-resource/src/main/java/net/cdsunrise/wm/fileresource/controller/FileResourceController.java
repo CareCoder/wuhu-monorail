@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.zeroturnaround.zip.FileSource;
 import org.zeroturnaround.zip.ZipEntrySource;
 import org.zeroturnaround.zip.ZipUtil;
+import sun.applet.Main;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -50,6 +51,8 @@ public class FileResourceController {
             if (file.getSize() > 0) {
                 //获取文件信息和保存
                 String fileStr = file.getOriginalFilename();
+                //这里获取到的文件名,可能是路径,所以需要把路径删除了
+                fileStr = fileStr.substring(fileStr.lastIndexOf("\\") + 1, fileStr.length());
                 String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
                 String fileName = uuid + "." + suffix;
                 File saveFile = new File(filePath + fileName);
