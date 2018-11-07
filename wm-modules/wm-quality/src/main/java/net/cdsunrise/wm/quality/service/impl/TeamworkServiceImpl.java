@@ -50,8 +50,10 @@ public class TeamworkServiceImpl implements TeamworkService {
         teamwork.setCreateTime(new Date());
         teamwork.setModifyTime(new Date());
         //如果没上传文件名字,则使用原始名字
+        String originalFilename = file.getOriginalFilename();
+        originalFilename = originalFilename.substring(originalFilename.lastIndexOf("\\") + 1, originalFilename.length());
         if (teamwork.getName() == null) {
-            teamwork.setName(file.getOriginalFilename());
+            teamwork.setName(originalFilename);
         }
         teamworkRepository.save(teamwork);
     }

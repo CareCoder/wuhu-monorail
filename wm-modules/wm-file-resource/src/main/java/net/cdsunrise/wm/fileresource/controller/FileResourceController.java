@@ -53,7 +53,7 @@ public class FileResourceController {
                 String fileStr = file.getOriginalFilename();
                 //这里获取到的文件名,可能是路径,所以需要把路径删除了
                 fileStr = fileStr.substring(fileStr.lastIndexOf("\\") + 1, fileStr.length());
-                String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
+                String suffix = fileStr.substring(fileStr.lastIndexOf(".") + 1);
                 String fileName = uuid + "." + suffix;
                 File saveFile = new File(filePath + fileName);
                 file.transferTo(saveFile);
