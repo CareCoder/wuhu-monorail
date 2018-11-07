@@ -24,7 +24,7 @@ public class Teamwork extends BaseEntity {
     /**
      * 状态 0是未开启 1是开启
      */
-    private Integer status = 0;
+    private Integer status;
 
     /**
      * 文件的uuid,之后去文件系统查找文件

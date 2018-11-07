@@ -46,6 +46,7 @@ public class TeamworkServiceImpl implements TeamworkService {
     public void upload(MultipartFile file, Teamwork teamwork) {
         String uuid = fileResourceFeign.upload(file);
         teamwork.setFileUuid(uuid);
+        teamwork.setStatus(0);
         teamwork.setCreateTime(new Date());
         teamwork.setModifyTime(new Date());
         //如果没上传文件名字,则使用原始名字
