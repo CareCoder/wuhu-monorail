@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @Table(name = "wm_report_news_module")
 @DynamicUpdate
 public class ReportNewsModule extends BaseEntity {
+    private String title;
     /**
      * 父id
      */
