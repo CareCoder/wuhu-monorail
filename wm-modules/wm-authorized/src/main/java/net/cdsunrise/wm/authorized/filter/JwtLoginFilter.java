@@ -75,7 +75,12 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
         response.setStatus(401);
         response.setHeader("Content-Type", "text/html;charset=UTF-8");
         PrintWriter writer = response.getWriter();
-        writer.write("{\"code\": 401, \"msg\": \"授权失败！\"}");
+        if ("Bad credentials".equals(failed.getMessage())) {
+            writer.write("{\"code\": 402, \"msg\": \"密码错误！\"}");
+        } else {
+            writer.write("{\"code\": 403, \"msg\": \"账号不存在！\"}");
+        }
+
 
         writer.flush();
         writer.close();
