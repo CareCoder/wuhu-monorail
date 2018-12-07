@@ -42,7 +42,7 @@ public class TeamworkController {
     }
 
     @PostMapping("/upload")
-    public void upload(MultipartFile file, Teamwork teamwork) {
+    public void upload(MultipartFile[] file, Teamwork teamwork) {
         teamworkService.upload(file, teamwork);
     }
 

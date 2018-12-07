@@ -17,7 +17,7 @@ public interface TeamworkService {
     /**
      * 上传
      */
-    void upload(MultipartFile file, Teamwork teamwork);
+    void upload(MultipartFile[] file, Teamwork teamwork);
 
     /**
      * 根据非空字段条件查询

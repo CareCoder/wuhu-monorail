@@ -43,6 +43,12 @@ public class TeamworkServiceImpl implements TeamworkService {
     }
 
     @Override
+    public void upload(MultipartFile[] files, Teamwork teamwork) {
+        for (MultipartFile file : files) {
+            upload(file, teamwork);
+        }
+    }
+
     public void upload(MultipartFile file, Teamwork teamwork) {
         String uuid = fileResourceFeign.upload(file);
         teamwork.setFileUuid(uuid);
