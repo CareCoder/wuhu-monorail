@@ -65,4 +65,9 @@ public class TeamworkController {
     public void update(Teamwork teamwork) {
         teamworkService.update(teamwork);
     }
+
+    @GetMapping("/publish/batch")
+    public void publishBatch(Integer status, Long[] ids) {
+        teamworkService.publishBatch(status, ids);
+    }
 }

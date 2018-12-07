@@ -69,6 +69,11 @@ public class TeamworkServiceImpl implements TeamworkService {
     }
 
     @Override
+    public void publishBatch(Integer status, Long[] ids) {
+        teamworkRepository.publishBatch(status, ids);
+    }
+
+    @Override
     public List<TeamworkVo> query(Teamwork teamwork) {
         QueryHelper queryHelper = new QueryHelper(Teamwork.class, "t");
         queryHelper

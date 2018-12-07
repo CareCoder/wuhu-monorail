@@ -53,4 +53,10 @@ public interface TeamworkService {
      * @param workPoint 工作站的实体
      */
     void uploadFloder(MultipartFile[] files, WorkPoint workPoint);
+
+    /**
+     * 批量发布
+     * @param ids
+     */
+    void publishBatch(Integer status, Long[] ids);
 }
