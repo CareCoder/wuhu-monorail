@@ -45,7 +45,9 @@ public class TeamworkServiceImpl implements TeamworkService {
     @Override
     public void upload(MultipartFile[] files, Teamwork teamwork) {
         for (MultipartFile file : files) {
-            upload(file, teamwork);
+            Teamwork temp = new Teamwork();
+            BeanUtils.copyProperties(teamwork, temp);
+            upload(file, temp);
         }
     }
 
